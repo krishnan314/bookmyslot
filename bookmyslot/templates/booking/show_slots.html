@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% block title %}
+Slot map
+{% endblock title %}
+{% endblock header %}
+
+{% block content %}
+<form method="post">
+    {% for date in slots_by_date %}
+    {{ date }}
+    <div class="row mt-4 mb-4">
+        {% for slot in slots_by_date[date] %}
+        <div class="col">
+            {% if g.user['id'] == slot['proctor'] %}
+            <input type="checkbox" class="btn-check" name="{{slot['time']}}" id="{{slot['time']}}" autocomplete="off" disabled/>
+            <label class="btn btn-success" for="{{slot['time']}}"> {{ slot['time'].strftime('%H:%M') }}</label>
+            {% else %}
+            <input type="checkbox" class="btn-check" name="{{slot['time']}}" id="{{slot['time']}}" autocomplete="off" />
+            <label class="btn btn-outline-primary" for="{{slot['time']}}"> {{ slot['time'].strftime('%H:%M') }}</label>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <input type="submit" value="Submit">
+</form>
+{% endblock content %}
