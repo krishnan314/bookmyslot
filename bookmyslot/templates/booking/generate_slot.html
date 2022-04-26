@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% block title %} Book Slots {% endblock title %}
+{% if g.user %}
+<a href="{{ url_for('booking.create_slot') }}">Book slot</a>
+{% endif %}
+{% endblock header %}
+
+{% block content %}
+<form method="post">
+
+    <div class="mb-3">
+        <label for="proctor" class="form-label">Proctor</label>
+        <input type="text" name="proctor" id="proctor" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="student" class="form-label">Student</label>
+        <input type="text" name="student" id="student" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="from_date" class="form-label">From</label>
+        <input type="date" name="from_date" id="from_date" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="to_date" class="form-label">To</label>
+        <input type="date" name="to_date" id="to_date" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="time" class="form-label">Time</label>
+        <input type="time" name="time" id="time" class="form-control" required>
+    </div>
+    <input type="submit" value="Add Slot">
+</form>
+{% endblock content %}

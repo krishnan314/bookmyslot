@@ -1,0 +1,18 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS slot;
+
+CREATE TABLE user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    role TEXT NOT NULL
+);
+
+CREATE TABLE slot (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    proctor INTEGER,
+    student INTEGER,
+    time TIMESTAMP NOT NULL UNIQUE,
+    FOREIGN KEY (proctor) REFERENCES user (id),
+    FOREIGN KEY (student) REFERENCES user (id)
+);

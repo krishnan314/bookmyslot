@@ -1,0 +1,11 @@
+{
+    "python.formatting.provider": "yapf",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "bookmyslot",
+            "database": "${workspaceFolder:bookmyslot-project}/instance/bookmyslot.sqlite"
+        }
+    ]
+}

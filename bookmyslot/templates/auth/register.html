@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Register {% endblock title %}</h1>
+{% endblock header %}
+
+{% block content %}
+<form method="post">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" id="password" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="password_verification" class="form-label">Password</label>
+        <input type="password" name="password_verification" id="password_verification" class="form-control" required>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input type="radio" id="r_student" name="role" value="student" class="form-check-input" required>
+        <label for="r_student" class="form-check-label">Student</label>
+    </div>
+    <div class="mb-3 form-check">
+        <input type="radio" id="r_proctor" name="role" value="proctor" class="form-check-input">
+        <label for="r_proctor" class="form-check-label">Proctor</label>
+    </div>
+    <input type="submit" value="Register" class="btn btn-primary">
+</form>
+{% endblock content %}

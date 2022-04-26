@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% block title %} Slots {% endblock title %}
+{% if g.user %}
+<a href="{{ url_for('booking.create_slot') }}">Book slot</a>
+{% endif %} 
+{% endblock header %}
+
+{% block content %}
+<table class="table table-striped">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Proctor</th>
+    <th scope="col">Student</th>
+    <th scope="col">Time</th>
+  </tr>
+{% for slot in slots %}
+{% if slot['proctor'] == g.user['id'] or g.user['role'] == 'admin' %}
+  <tr>
+    <td>{{ slot['id'] }}</td>
+    <td>{{ slot['proctor'] }}</td>
+    <td>{{ slot['student'] }}</td>
+    <td>{{ slot['time'] }}</td>
+  </tr>
+{% endif %}
+{% endfor %}
+</table>
+{% endblock content %}
