@@ -65,13 +65,22 @@ def show_slots():
     db = get_db()
     if request.method == 'POST':
         response = request.form
-        for slot in response:
-            db.execute('UPDATE slot SET proctor = ? WHERE time = ?', (
-                g.user['id'],
-                slot,
-            ))
-            flash(slot)
-        db.commit()
+        if g.user['role'] == 'proctor':
+            for slot in response:
+                db.execute('UPDATE slot SET proctor = ? WHERE time = ?', (
+                    g.user['id'],
+                    slot,
+                ))
+                flash(slot)
+            db.commit()
+        if g.user['role'] == 'student':
+            for slot in response:
+                db.execute('UPDATE slot SET student = ? WHERE time = ?', (
+                    g.user['id'],
+                    slot,
+                ))
+                flash(slot)
+            db.commit()
 
     slots = db.execute('SELECT * FROM slot ORDER BY time')
     slots_by_date = {}

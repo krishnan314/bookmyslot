@@ -16,7 +16,7 @@
     <th scope="col">Time</th>
   </tr>
 {% for slot in slots %}
-{% if slot['proctor'] == g.user['id'] or g.user['role'] == 'admin' %}
+{% if slot['proctor'] == g.user['id'] or slot['student'] == g.user['id'] or g.user['role'] == 'admin' %}
   <tr>
     <td>{{ slot['id'] }}</td>
     <td>{{ slot['proctor'] }}</td>
